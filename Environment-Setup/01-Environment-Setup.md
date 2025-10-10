@@ -40,7 +40,7 @@ Ask an AI you trust the following questions:
 
 Of course, you can ask anything you want.
 
-## 5. 🎉 Explore working with conda yourself🎉
+## 5. 🎉 Explore working with conda yourself 🎉
 Congratulations! You've stepped out further!
 
 ## 6. Quick Command Cheat Sheet
