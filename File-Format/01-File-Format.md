@@ -10,13 +10,13 @@ At the beginning, FASTA was the name of a program created by David J. Lipman and
 The essence of FASTA is **plain text** — you can open it with any text editor. File names are usually something like `seq.fa` or `seq.fasta`.
 
 Here is an example:
-```
+```bash
 >seq1 Random DNA sequence example
 ATGCGTAGCTAGCTACGATCGATCGTAGCTAGCTAGCATCGATCGTACGATCGATCGTAGCTAG
 >seq2 Random DNA sequence example
 AAGCATCAGCTAGAGCTAGCATCGATCGTACGACGATCGATAGCTAGGATCGATCGTAGGCTTA
 ```
-```
+```bash
 >seq3 Random protein sequence example
 MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQANLQDKPEWVILKQME
 ```
@@ -31,7 +31,7 @@ FASTQ is FASTA + Quality. Very easy.
 So, what is "Quality"? It is a score (Phred-score) that reflects the sequencing machine's confidence on this nucleotide. It is allocated by the sequencing machine automatically. The common range for this socre in FASTQ file is $0-40$, which is calculated as $Q = -10\log_{10} P$, where P is the probability that this base is incorrect. BTW, FASTQ is also **plain text** (file names are always `read.fastq`). 
 
 Let's look at an example first:
-```
+```bash
 @readID1
 GGGAAAAGTCAATGAAGCCAGGCAAAATGATCAAGTAAAAGCACCTCAATAAAATGCATTTC
 +
@@ -64,7 +64,7 @@ You can think of it as:
 First things first, SAM is also **plain text**. SAM is very complicated. You don't have to know everything about it. In practice, we often turn to genome browsers like IGV to visualize the alignment results, instead of reading the texts directly. However, it is helpful to gain some rough notions (files are like `align.sam` or`align.bam`).
 
 Example goes first (truncated):
-```
+```bash
 @HD	VN:1.5	SO:unsorted	GO:query
 @SQ	SN:I:10000-30000	LN:20001
 @PG	ID:bwa	PN:bwa	VN:0.7.19-r1273	CL:bwa mem refs/partial_chrI.fa data/yeast_chrI_sreads_1.fq data/yeast_chrI_sreads_2.fq
@@ -150,7 +150,7 @@ The first `I:10000-30000-3984` has a FLAG of $99 = 1 + 2 + 32 + 64$, so it is PA
 | **H** | Hard clipping | Bases trimmed off and **not shown** in SEQ | `10H90M` |
 | **P** | Padding | Placeholder for deleted bases in multiple alignment (rare) |  |
 
-```
+```bash
 # match
 ref   AATGGGCGTTAC
       ||||||||||||
@@ -191,7 +191,7 @@ After alignment, we have assigned each read to a position (see figure below; col
 The question is — how does this sample differ from the reference? We want ot find those variants. This process is called variant calling, and it produced a VCF file.
 
 Here is an example (truncated):
-```
+```bash
 ##fileformat=VCFv4.2
 ##BBMapVersion=39.37
 ##Program=MutateGenome
@@ -237,7 +237,7 @@ After the header, the main body of a VCF file lists all detected variants — on
 | 10 | **Sample column(s)** | `1:60.00:PASS` | Values for each field in FORMAT, one sample per column. |
 
 The FORMAT and Sample column (in this case `partial_chrI_mut`) might be little confused. Let's take the first variant call as an example:
-```
+```bash
 FORMAT	partial_chrI_mut
 GT:SC:PF	1:60.00:PASS
 ```
@@ -265,13 +265,13 @@ It seems like the yeasts we are using as the example are in their haploid life c
 ## 5. GFF \& GTF
 
 ### 5.1 Nomecalture (naming)
-GFF stands for General Feature Format.  GTF stands for Gene Transfer Format.
+GFF stands for General Feature Format. GTF stands for Gene Transfer Format.
 
 ### 5.2 Overview
 GFF and GTF store the annotations of the genome as intervals, such as the functions of genes, the composition of genes, and so on. Each interval is called a feature.
 
 Example for GFF (truncated):
-```
+```bash
 ##gff-version 3
 ##sequence-region   I 1 230218
 #!genome-build SGD R64-1-1
@@ -303,7 +303,7 @@ You can simply ignore `###`. GFF has two sections — header and body. Header li
 The attributes field is separated by semicolons (`;`). `Parent=gene:YAL069W` means this feature belongs to gene YAL069W. `ID=transcript:YAL069W_mRNA` gives each feature a unique identifier.
 
 GTF is similar (truncated):
-```
+```bash
 #!genome-build R64-1-1
 #!genome-version R64-1-1
 #!genome-date 2011-09
@@ -318,13 +318,56 @@ IV	sgd	stop_codon	8683	8685	.	-	0	gene_id "YDL246C"; transcript_id "YDL246C_mRNA
 ```
 The only difference appears in the last field, where GTF uses `key "value"` format to store the metadata.
 
-## 6. Utilize AI
+## 6. GAF
+
+### 6.1 Nomenclature (Naming)
+GAF stands for Gene Association Format.
+
+### 6.2 Overview
+GAF sused by the Gene Ontology (GO) project to describe associations between gene products (such as proteins) and GO terms. Each line in a GAF file represents one gene-to-GO annotation and contains 17 fields (‼️separated by **tabs**‼️). Also we want to see an example first.
+```bash
+!gaf-version: 2.2
+!date-generated: 20240529
+!generated-by: Saccharomyces Genome Database (SGD)
+!URL: https://www.yeastgenome.org/
+!Contact Email: sgd-helpdesk@lists.stanford.edu
+!Funding: NHGRI at US NIH, grant number U41-HG001315
+!
+SGD	S000006369	RHO1	involved_in	GO:0090334	PMID:36949198	IDA		P	GTP-binding protein of the rho subfamily of Ras-like small GTPases	YPR165W|Rho family GTPase RHO1	protein	taxon:559292	20230807	SGD		UniProtKB:P06780
+SGD	S000006369	RHO1	enables	GO:0008047	PMID:36949198	IDA		F	GTP-binding protein of the rho subfamily of Ras-like small GTPases	YPR165W|Rho family GTPase RHO1	protein	taxon:559292	20230807	SGD	part_of(GO:0090334),has_input(SGD:S000004334)	UniProtKB:P06780
+SGD	S000003211	ANK1	is_active_in	GO:0005737	PMID:37531259	IDA		C	Cytoplasmic ankyrin repeat-containing protein	YGL242C	protein	taxon:559292	20230809	SGD		UniProtKB:P53066
+```
+You can easily recognize the comments section and body section. The body typically has 17 fields.
+
+| # | Field Name | Description | Example |
+|---|-------------|-------------|----------|
+| 1 | DB | Database from which the identifier is derived | `SGD` |
+| 2 | DB Object ID | Unique identifier in the database | `S000006369` |
+| 3 | DB Object Symbol | Gene or gene product symbol | `RHO1` |
+| 4 | Qualifier | Qualifiers that modify the interpretation of the GO term | `involved_in` |
+| 5 | GO ID | GO term identifier | `GO:0090334` |
+| 6 | DB:Reference | Reference supporting the annotation | `PMID:36949198` |
+| 7 | Evidence Code | Evidence code supporting the annotation (How do we get this annotation) | `IDA` (Inferred from Direct Assay) |
+| 8 | With (or) From | Additional identifiers or evidence sources used in the annotation | `-` |
+| 9 | Aspect | GO category: P = Biological Process, F = Molecular Function, C = Cellular Component | `P` |
+| 10 | DB Object Name | Full name of the gene or gene product | `GTP-binding protein of the rho subfamily of Ras-like small GTPases` |
+| 11 | Synonym | Alternative names or symbols (separated by “|”) | `YPR165W|Rho family GTPase RHO1` |
+| 12 | DB Object Type | Type of the entity | `protein` |
+| 13 | Taxon | Taxonomic identifier(s) for the species | `taxon:559292` |
+| 14 | Date | Date the annotation was made (YYYYMMDD) | `20230807` |
+| 15 | Assigned By | The database or group that made the annotation | `SGD` |
+| 16 | Annotation Extension | Optional field providing additional contextual relationships | `-` |
+| 17 | Gene Product Form ID | Optional field specifying the gene product | `UniProtKB:P06780` |
+
+The format of GAF is quiet fixed and straightforward.
+
+## 7. Utilize AI
 Ask an AI the following question:
 
 - What is BED file format in bioinformatics?
 
 Of course, you can ask anything you want.
 
-## 7. 🎉 Explore the world of file formats youself 🎉
+## 8. 🎉 Explore the world of file formats youself 🎉
 Congratulations! You have solved another big problem!
 
