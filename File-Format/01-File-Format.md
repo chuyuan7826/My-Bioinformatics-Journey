@@ -142,13 +142,15 @@ The first `I:10000-30000-3984` has a FLAG of $99 = 1 + 2 + 32 + 64$, so it is PA
 
 | Symbol | Meaning | Description | Example |
 |:--:|:--|:--|:--|
-| **M** | Alignment match or mismatch | Bases aligned to the reference (can include mismatches) | `150M` → 150 aligned bases |
-| **I** | Insertion | Bases **present in the read** but **not in the reference** | `145M1I4M` → one inserted base |
-| **D** | Deletion | Bases **missing from the read** but **present in the reference** | `121M1D29M` → one deleted base |
+| **M** | Alignment match or mismatch | Bases aligned to the reference (can include mismatches) | `150M` -> 150 aligned bases |
+| **I** | Insertion | Bases **present in the read** but **not in the reference** | `145M1I4M` -> one inserted base |
+| **D** | Deletion | Bases **missing from the read** but **present in the reference** | `121M1D29M` -> one deleted base |
 | **N** | Skipped region | Used in spliced alignments (e.g. introns in RNA-seq) | `50M1000N50M` |
 | **S** | Soft clipping | Bases at the end of the read **not aligned**, but still shown in SEQ | `5S95M` |
 | **H** | Hard clipping | Bases trimmed off and **not shown** in SEQ | `10H90M` |
 | **P** | Padding | Placeholder for deleted bases in multiple alignment (rare) |  |
+| **=** | Sequence match | Bases in the read **exactly match** the reference | `50=100X` -> 50 exact matches |
+| **X** | Sequence mismatch | Bases in the read **do not match** the reference | `50=100X` -> 100 mismatches |
 
 ```bash
 # match
