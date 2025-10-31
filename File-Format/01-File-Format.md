@@ -101,7 +101,7 @@ After the header, each line represents the alignment result of one read (a.k.a. 
 | 6 | **CIGAR** | Describes how the read aligns to the reference (e.g., `150M` = 150 matches or mismatches, `121M1D29M` = 1 deleted base, `145M1I4M` = 1 inserted base). We will discuss the details later. |
 | 7 | **RNEXT** | Reference name of the **mate** read. `=` means the same as RNAME (on the same chromosome). |
 | 8 | **PNEXT** | Position of the mate read. |
-| 9 | **TLEN** | Template length — the estimated insert size between paired reads, plus the lengths of reads, i.e. the length of the DNA fragment being sequenced. |
+| 9 | **TLEN** | Template length — the estimated insert size between paired reads, i.e. the length of the DNA fragment being sequenced. |
 | 10 | **SEQ** | The read sequence itself. |
 | 11 | **QUAL** | Base quality string (same length as SEQ). Each character encodes a Phred-score (same as we saw in FASTQ section). |
 
