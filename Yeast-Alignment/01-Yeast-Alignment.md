@@ -943,7 +943,7 @@ $ zgrep -v '^#' var_ann/yeast_filtered.ann.vcf.gz | grep -E 'HIGH|MODERATE' | cu
 ```
 For convenience, we will choose a web tool. Go to [g:Profiler](https://biit.cs.ut.ee/gprofiler/gost). Copy and paste the list we just obtained, choose organism (Saccharomyces cerevisiae), and click 'Run query'.
 ![GO term analysis](gProfiler_scerevisiae_2025-11-07_12-26-56.png)
-It seems that it doesn't show much biological significance, which is exprected, since we are using simulation data.
+It seems that it doesn't show much biological significance, which is expected, since we are using simulation data.
 
 ## 13. 🎉 Congratulations 🎉
 Explore anything you like.
