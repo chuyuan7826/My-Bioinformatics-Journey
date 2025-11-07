@@ -6,7 +6,7 @@ This practive requires the following environment.
 ```bash
 $ conda create -n yeast-align
 $ conda activate yeast-align
-$ conda install mason art samtools bwa-mem2 bcftools fastqc seqkit multiqc fastp qualimap picard delly
+$ conda install mason art samtools bwa-mem2 bcftools fastqc seqkit multiqc fastp qualimap picard delly snpeff
 ```
 
 ## 2. Get Data
