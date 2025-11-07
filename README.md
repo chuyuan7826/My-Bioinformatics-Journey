@@ -4,6 +4,11 @@ This repository aims to record my learning path as a beginner in bioinformatics 
 # Hi there 👋
 Have you ever made up your mind to embark on practices in bioinformatics but didn't know where to start? I used to be like this as well, so I decided to record my learning path as a beginner in bioinformatics practice. I am still an undergraduate so I am learning new things at the same time. You can treat this repository as a guide, or a companion, or whatever you like. I will appreciate it if you find this repository helpful.
 
-🍀 Now, you can go to the folders above 👆 to start with whatever you like!
+🍀 **Here is the catalog** 👇
+
+- [Set up your bioinformatics working environment](Environment-Setup/01-Environment-Setup.md)
+- [Understand basic file formats in bioinformatics](File-Format/01-File-Format.md)
+- [Learn how to manipulate files using Linux command line](Yeast-File-Manipulation/01-Yeast-File-Manipulation.md)
+- [Learn basic short read alignment and variant calling](Yeast-Alignment/01-Yeast-Alignment.md)
 
 (Retrieval words: bioinformatics, bioinformatics-practice, practical-bioinformatics, learning-notes, notebook, learning-path)
