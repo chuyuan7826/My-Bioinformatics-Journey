@@ -673,6 +673,7 @@ ref|NC_001224|	85779	17124	0
 ```
 The four columns are sequence name, sequence length, mapped reads, and unmapped reads, respectively. Note that the total number of unmapped reads is greater than the sum of unmapped reads of each chromosome. We also have a very sophisticated tool.
 ```bash
+$ mkdir QCa
 $ qualimap bamqc -bam align/yeast_align.bam -c -sd -outdir align/QC/qualimap -outformat HTML 
 $ open align/QC/qualimap/qualimapReport.html
 ```
