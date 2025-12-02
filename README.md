@@ -11,5 +11,3 @@ Have you ever made up your mind to embark on practices in bioinformatics but did
 - [Learn how to manipulate files using Linux command line](Yeast-File-Manipulation/01-Yeast-File-Manipulation.md)
 - [Learn basic short read alignment and variant calling](Yeast-Alignment/01-Yeast-Alignment.md)
 - [Preliminary structural variant calling](Yeast-Alignment/02-Yeast-SV-calling.md)
-
-(Retrieval words: bioinformatics, bioinformatics-practice, practical-bioinformatics, learning-notes, notebook, learning-path)
